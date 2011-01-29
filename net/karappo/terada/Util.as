@@ -1,4 +1,4 @@
-package net.karappo.terada 
+﻿package net.karappo.terada 
 {
 	/**
 	 * よく使う静的な関数群
@@ -154,34 +154,32 @@ package net.karappo.terada
 		
 		// var_dump
 		// http://snipplr.com/view.php?codeview&id=8195
-		public function var_dump(_obj):void
+		public static function var_dump(_obj):void
 		{
 			analyze(_obj);
 		}
-		private function analyze(_obj):void 
+		private static function analyze(_obj):void 
 		{
 			var item:Object;
 			switch (typeof(_obj)){
 				case "object":
-					write("<object>");
-					write(_obj.toString());
-					for each (item in _obj){
+					trace("<object>");
+					trace(_obj.toString());
+					for each (item in _obj)
+					{
 						analyze(item);
-					};
-					write("</object>");
+					}
+					trace("</object>");
 				break;
 				case "xml":
-					write("<xml>");
-					write(_obj);
-					write("</xml>");
+					trace("<xml>");
+					trace(_obj);
+					trace("</xml>");
 				break;
 				default:
-					write(_obj + " (" + typeof(_obj) + ")");
+					trace(_obj + " (" + typeof(_obj) + ")");
 				break;
 			};
-		}
-		private function write(_obj):void{
-			trace(_obj);
 		}
 		
 		
