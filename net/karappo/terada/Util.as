@@ -152,6 +152,39 @@ package net.karappo.terada
 		
 		
 		
+		// var_dump
+		// http://snipplr.com/view.php?codeview&id=8195
+		public function var_dump(_obj):void
+		{
+			analyze(_obj);
+		}
+		private function analyze(_obj):void 
+		{
+			var item:Object;
+			switch (typeof(_obj)){
+				case "object":
+					write("<object>");
+					write(_obj.toString());
+					for each (item in _obj){
+						analyze(item);
+					};
+					write("</object>");
+				break;
+				case "xml":
+					write("<xml>");
+					write(_obj);
+					write("</xml>");
+				break;
+				default:
+					write(_obj + " (" + typeof(_obj) + ")");
+				break;
+			};
+		}
+		private function write(_obj):void{
+			trace(_obj);
+		}
+		
+		
 		public function Util() 
 		{
 			
